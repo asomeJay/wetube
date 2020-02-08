@@ -4,9 +4,10 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cookie_parser from "cookie-parser";
 import body_parser from "body-parser";
-import user_router from "./Router/userRouter";
+import userRouter from "./Router/userRouter";
 import videoRouter from "./Router/videoRouter";
 import globalRouter from "./Router/globalRouter";
+import routes from "./routes";
 
 const app = express()
 //Node Module을 다른 곳에서 들고온다. require가 하는 일은
@@ -19,8 +20,8 @@ app.use(body_parser.json());
 app.use(helmet());
 app.use(morgan("dev"));
 
-app.use("/", globalRouter);
-app.use("/user", user_router);
-app.use("/video", videoRouter);
+app.use(routes.home, globalRouter);
+app.use(routes.users, userRouter);
+app.use(routes.videos, videoRouter);
 
 export default app;
