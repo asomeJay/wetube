@@ -14,6 +14,7 @@ const app = express()
 // Node Module을 들고오는 것. express라는 이름의 폴더를
 // 내 파일들 속에서 찾으려함 
 
+app.set("view engine", "pug");
 app.use(cookie_parser());
 app.use(body_parser.urlencoded({extended : true}));
 app.use(body_parser.json());
