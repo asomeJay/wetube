@@ -4,7 +4,7 @@ export const videos = [
         title : 'Fucking',
         description : 'This is smth i lvoe',
         views : 24,
-        videoFile : "https://archive.org/details/BigBuckBunny_124",
+        videoFile : "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator:{
             name:"nicola",
             email:"nico@aa.net",
@@ -16,7 +16,7 @@ export const videos = [
         title : 'sddg',
         description : 'Thsdsdsda i lvoe',
         views : 24,
-        videoFile : "https://archive.org/details/BigBuckBunny_124",
+        videoFile : "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator:{
             name:"nicola",
             email:"nico@aa.net",
@@ -28,7 +28,7 @@ export const videos = [
         title : 'F131313ng',
         description : 'This is smth i lvoe',
         views : 24,
-        videoFile : "https://archive.org/details/BigBuckBunny_124",
+        videoFile : "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator:{
             name:"nicola",
             email:"nico@aa.net",
@@ -40,7 +40,7 @@ export const videos = [
         title : 'Fasdasdg',
         description : 'Thaaaaaaaaaaaaaaaaaaaaaaaaaaaaalvoe',
         views : 24,
-        videoFile : "https://archive.org/details/BigBuckBunny_124",
+        videoFile : "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator:{
             name:"nicola",
             email:"nico@aa.net",
