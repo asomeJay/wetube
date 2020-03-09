@@ -60,20 +60,20 @@ export const postGithubLogin = (req, res) => {
 export const facebookLogin = passport.authenticate("facebook");
 export const facebookLoginCallback = async (accessToken, refreshToken, profile, cb) => {
   const {
-    _json: { id, avatar_url, name, email }
+    _json: { id, name, email }
   } = profile;
   try {
     const user = await User.findOne({ email });
     if (user) {
-      user.githubId = id;
+      user.facebookId = id;
       user.save();
       return cb(null, user);
     }
     const newUser = await User.create({
       email,
       name,
-      githubId: id,
-      avatarUrl: avatar_url
+      facebookId: id,
+      avatarUrl: `https://graph.facebook.com/${id}/picture?type=large`
     });
     return cb(null, newUser);
   } catch (error) {
