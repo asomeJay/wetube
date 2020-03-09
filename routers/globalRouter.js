@@ -4,7 +4,8 @@ import routes from "../routes";
 import { home , search} from "../controllers/videoController";
 import {
     logout, getJoin, postJoin, getLogin, postLogin,
-    postGithubLogin, githubLogin, getMe
+    postGithubLogin, githubLogin, getMe,
+    postFacebookLogin, facebookLogin
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middlewares";
 
@@ -21,12 +22,19 @@ globalRouter.get(routes.search, search);
 globalRouter.get(routes.logout, onlyPrivate, logout);
 
 globalRouter.get(routes.gitHub, githubLogin);
-
 globalRouter.get(
     routes.githubCallback,
     passport.authenticate("github", { failureRedirect: "/login"}),
     postGithubLogin
 );
+
+globalRouter.get(routes.facebook, facebookLogin);
+globalRouter.get(
+    routes.facebookCallback,
+    passport.authenticate("facebook", { failureRedirect: "/login"}),
+    postFacebookLogin
+);
+
 
 globalRouter.get(routes.me, getMe);
 
