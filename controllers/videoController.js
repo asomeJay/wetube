@@ -1,17 +1,20 @@
 import routes from "../routes";
 import Video from "../models/Video";
+import Comment from "../models/Comment";
+
+// Home
 
 export const home = async (req, res) => {
   try {
-    const videos = await Video.find({}).sort({
-      _id: -1
-    });
+    const videos = await Video.find({}).sort({ _id: -1 });
     res.render("home", { pageTitle: "Home", videos });
   } catch (error) {
     console.log(error);
     res.render("home", { pageTitle: "Home", videos: [] });
   }
 };
+
+// Search
 
 export const search = async (req, res) => {
   const {
@@ -28,18 +31,18 @@ export const search = async (req, res) => {
   res.render("search", { pageTitle: "Search", searchingBy, videos });
 };
 
-export const getUpload = (req, res) => {
+// Upload
+
+export const getUpload = (req, res) =>
   res.render("upload", { pageTitle: "Upload" });
-};
 
 export const postUpload = async (req, res) => {
-  console.log(req);
   const {
     body: { title, description },
-    file: { path }
+    file: { location }
   } = req;
   const newVideo = await Video.create({
-    fileUrl: path,
+    fileUrl: location,
     title,
     description,
     creator: req.user.id
@@ -48,6 +51,8 @@ export const postUpload = async (req, res) => {
   req.user.save();
   res.redirect(routes.videoDetail(newVideo.id));
 };
+
+// Video Detail
 
 export const videoDetail = async (req, res) => {
   const {
@@ -63,13 +68,17 @@ export const videoDetail = async (req, res) => {
   }
 };
 
+// Edit Video
+
 export const getEditVideo = async (req, res) => {
   const {
     params: { id }
   } = req;
   try {
     const video = await Video.findById(id);
+
     res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+  
   } catch (error) {
     res.redirect(routes.home);
   }
@@ -88,11 +97,15 @@ export const postEditVideo = async (req, res) => {
   }
 };
 
+// Delete Video
+
 export const deleteVideo = async (req, res) => {
   const {
     params: { id }
   } = req;
   try {
+    const video = await Video.findById(id);
+   
     await Video.findOneAndRemove({ _id: id });
   } catch (error) {
     console.log(error);
