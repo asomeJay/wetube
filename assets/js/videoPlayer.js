@@ -28,7 +28,19 @@ function handleVolumeClick() {
     }
 }
 
+function exitFullScreen() {
+    videoContainer.webkitexitFullscreen();
+    fullScrnBtn.innerHTML = '<i class="fas fa-extend"></i>';
+    fullScrnBtn.removeEventListener("click", exitFullScreen);
+    fullScrnBtn.addEventListener("click", goFullScreen);
+}
 
+function goFullScreen() {
+    videoContainer.webkitrequestFullscreen();
+    fullScrnBtn.innerHTML = '<i class="fas fa-compress"></i>';
+    fullScrnBtn.removeEventListener("click", goFullScreen);
+    fullScrnBtn.addEventListener("click", exitFullScreen);
+}
 function init() {
     videoPlayer.volume = 0.5;
     playBtn.addEventListener("click", handlePlayClick);
